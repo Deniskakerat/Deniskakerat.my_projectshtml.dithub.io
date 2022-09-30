@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Trigon </title>
+</head>
+<body>
+<canvas id="canvas" width="2005" height="2005"></canvas>
+<script>
+ var canvas = document.getElementById("canvas");
+ var ctx = canvas.getContext("2d");
+
+ var circle = function (x, y, radius,n,a) {
+  ctx.beginPath();  
+    if(n===1){
+    ctx.arc(x, y, radius,3*Math.PI/2,  0, false);
+  }
+  if(n===2){
+    ctx.arc(x, y, radius,  Math.PI,3*Math.PI/2, false);
+  }
+  if(n===3){
+    ctx.arc(x, y, radius,Math.PI/2,Math.PI, false);
+  }
+   if(n===4){
+     ctx.arc(x, y, radius,0,  Math.PI/2, false);
+  }
+  ctx.stroke();
+  if(a===true){
+   ctx.fill();
+  }
+ };
+ var snoman = function (x,y,r,n){
+  ctx.strokeStyle = "Black";
+  circle(x, y, r, n ,false);
+ };/*
+
+*/let a1=0.0, a2=0.0;
+let s1=[500,300,1];
+let s2=[500,300,1];
+let s3=[500,200,1];
+snoman(500,300,1,4)
+snoman(500,300,1,1)
+let point1=1;
+let point2 =1;
+let sum =0;
+let k=2;
+/*ctx.beginPath();
+ ctx.arc(100, 100, 10,3*Math.PI/2,  0, false);
+  ctx.stroke();*/
+for(let i =0; i<15;i++){
+  if(k>=1&&k<=4){
+    if(k===1){
+      s3[0]=s2[0]-s1[2];
+      console.log(k)
+    }
+    if(k===2){
+      s3[1]=s2[1]+s1[2];
+      console.log(k)
+    }
+    if(k===3){
+      s3[0]=s2[0]+s1[2];
+      console.log(k)
+    }
+    if(k===4){
+      s3[1]=s2[1]-s1[2];
+      console.log(k)
+    }
+
+  s3[2]=s1[2]+s2[2];
+  s1=s2;
+  s2=s3;
+  snoman(s3[0],s3[1],s3[2],k); 
+  }else{
+    k=0;
+  }
+  k++;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Trigon</title>
+</head>
+<body>
+<canvas id="canvas" width="2005" height="2005"></canvas>
+<script>
+ var canvas = document.getElementById("canvas");
+ var ctx = canvas.getContext("2d");
+ var circle = function (x, y, radius,a) {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+  ctx.stroke();
+  if(a===true){
+   ctx.fill();
+  }
+ };
+  var center = function (point1,point2, point3) {
+  	if(point1[0]>point2[0]){
+  		point3[0]=point2[0]+(point1[0]-point2[0])/2;
+  	}
+  	else{
+  		point3[0]=point1[0]+(point2[0]-point1[0])/2;
+  	} 
+  	if(point1[1]>point2[1]){
+  		point3[1]=point2[1]+(point1[1]-point2[1])/2;
+  	}
+  	else{
+  		point3[1]=point1[1]+(point2[1]-point1[1])/2;
+  	} 
+
+  };
+ //by time
+ var snoman = function (x,y){
+  ctx.strokeStyle = "Black";
+  circle(x, (y), 1,false);
+ }
+snoman(0,2000);
+snoman(1000,0);
+snoman(2000,2000);
+let s1=[0,2000];
+let s2=[1000,0];
+let s3=[2000,2000];
+let s=[200,200],point_s=[200,200];
+center(s1,s2,s);
+for(let i=0;i<100000;i++){
+var intervalId = setInterval(function () {
+ for(let i =0; i<1000;i++){
+  let k= Math.floor(Math.random() * 3)+1;
+  if(k==1){
+center(s,s1,point_s);
+  }
+  if(k==2){
+center(s,s2,point_s);
+  }
+  if(k==3){
+center(s,s3,point_s);
+  }
+  s=point_s;
+  snoman(s[0],s[1]);  
+}
+}, 4000);
+}
+
+
+</script>
+</body>
+</html>
